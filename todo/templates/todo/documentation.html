@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API - Documentation</title>
+</head>
+<body>
+    <h1>API - Dokumentacja</h1>
+    <h2>Działania na użytkownikach</h2>
+    <h3>Dodawanie użytkowników</h3>
+    <p>Wymaga uprawnień: canMakeUsers</p>
+    <p>localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
+        <br>Przykład: localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</p>
+
+    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+        <br>Wymagane parametry:</p>
+    <ul>
+        <li>type(add) - określa typ działania na użytkownikach, w przypadku dodawania przyjmuje wartość 'add'</li>
+        <li>name('nazwa użytkownika') - określa nazwę użytkownika</li>
+        <li>password('hasło') - określa hasło użytkownika [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
+    </ul>
+    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+
+    <h3>Usuwanie użytkowników</h3>
+    <p>Wymaga uprawnień: canDeleteUsers</p>
+    <p>localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
+    <br>Przykład: localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</p>
+    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+        <br>Wymagane parametry:</p>
+    <ul>
+        <li>type(delete) - określa typ działania na użytkownikach, w przypadku usuwania przyjmuje wartość 'delete'</li>
+        <li>name('nazwa użytkownika') - określa nazwę użytkownika do usunięcia</li>
+        <li>password('hasło') - wymagane jest hasło identyczne z podanym w bazie w celu weryfikacji [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
+    </ul>
+    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+
+    <h3>Logowanie</h3>
+    TODO
+    <h2>Działania na notatkach todo</h2>
+    <h3>Dodawanie notatek</h3>
+    <p>Wymaga uprawnień: canMakeNotes</p>
+    <p>localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
+    <br>Przykład: localhost:8000/api/note/type,add,title,tytul,content,tekstnotatki,importance,3,token,user223344/testappkey-111222</p>
+    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+        <br>Wymagane parametry:</p>
+    <ul>
+        <li>type(add) - określa typ działania na notatkach, w przypadku dodawania przyjmuje wartość 'add'</li>
+        <li>title('tytuł notatki') - określa tytuł notatki</li>
+        <li>importance(0|1|2|3) - waga notatki</li>
+        <li>token - unikalny token użytkownika, można go uzyskać poprzez logowanie do api</li>
+        <li>content - dodatkowy opis notatki [jeżeli brak proszę jako wartośc umieścić 'null']</li>
+    </ul>
+    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+</body>
+</html>
