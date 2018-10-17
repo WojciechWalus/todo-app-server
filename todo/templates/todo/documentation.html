@@ -1,55 +1,238 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="{% static 'todo/css/style.css' %}">
     <title>API - Documentation</title>
 </head>
 <body>
-    <h1>API - Dokumentacja</h1>
-    <h2>Działania na użytkownikach</h2>
-    <h3>Dodawanie użytkowników</h3>
-    <p>Wymaga uprawnień: canMakeUsers</p>
-    <p>localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
-        <br>Przykład: localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</p>
+    <div class="header">API - Dokumentacja</div>
+    <div class="main-container">
 
-    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
-        <br>Wymagane parametry:</p>
-    <ul>
-        <li>type(add) - określa typ działania na użytkownikach, w przypadku dodawania przyjmuje wartość 'add'</li>
-        <li>name('nazwa użytkownika') - określa nazwę użytkownika</li>
-        <li>password('hasło') - określa hasło użytkownika [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
-    </ul>
-    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+        <div class="title-big">Działania na użytkownikach</div>
 
-    <h3>Usuwanie użytkowników</h3>
-    <p>Wymaga uprawnień: canDeleteUsers</p>
-    <p>localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
-    <br>Przykład: localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</p>
-    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
-        <br>Wymagane parametry:</p>
-    <ul>
-        <li>type(delete) - określa typ działania na użytkownikach, w przypadku usuwania przyjmuje wartość 'delete'</li>
-        <li>name('nazwa użytkownika') - określa nazwę użytkownika do usunięcia</li>
-        <li>password('hasło') - wymagane jest hasło identyczne z podanym w bazie w celu weryfikacji [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
-    </ul>
-    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+        <div class="title-small">Dodawanie użytkowników</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canMakeUsers</p>
+            <p>Składnia: <span class="syntax">localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</span></p>
 
-    <h3>Logowanie</h3>
-    TODO
-    <h2>Działania na notatkach todo</h2>
-    <h3>Dodawanie notatek</h3>
-    <p>Wymaga uprawnień: canMakeNotes</p>
-    <p>localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}
-    <br>Przykład: localhost:8000/api/note/type,add,title,tytul,content,tekstnotatki,importance,3,token,user223344/testappkey-111222</p>
-    <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
-        <br>Wymagane parametry:</p>
-    <ul>
-        <li>type(add) - określa typ działania na notatkach, w przypadku dodawania przyjmuje wartość 'add'</li>
-        <li>title('tytuł notatki') - określa tytuł notatki</li>
-        <li>importance(0|1|2|3) - waga notatki</li>
-        <li>token - unikalny token użytkownika, można go uzyskać poprzez logowanie do api</li>
-        <li>content - dodatkowy opis notatki [jeżeli brak proszę jako wartośc umieścić 'null']</li>
-    </ul>
-    <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(add) - określa typ działania na użytkownikach, w przypadku dodawania przyjmuje wartość 'add'</li>
+                <li>name('nazwa użytkownika') - określa nazwę użytkownika</li>
+                <li>password('hasło') - określa hasło użytkownika [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+           <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Usuwanie użytkowników</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canDeleteUsers</p>
+            <p>Składnia: <span class="syntax">localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/user/type,add,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(delete) - określa typ działania na użytkownikach, w przypadku usuwania przyjmuje wartość 'delete'</li>
+                <li>name('nazwa użytkownika') - określa nazwę użytkownika do usunięcia</li>
+                <li>password('hasło') - wymagane jest hasło identyczne z podanym w bazie w celu weryfikacji [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Logowanie</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canLoginUsers</p>
+            <p>Składnia: <span class="syntax">localhost:8000/api/user/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/user/type,login,name,testuser,password,5d9c68c6c50ed3d02a2fcf54f63993b6/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(login) - określa typ działania na użytkownikach, w przypadku logowania przyjmuje wartość 'login'</li>
+                <li>name('nazwa użytkownika') - określa nazwę użytkownika do zalogowania</li>
+                <li>password('hasło') - wymagane jest hasło identyczne z podanym w bazie w celu weryfikacji [UWAGA: hasło powinno zostać wysłane w postaci zaszyfrowanej przez md5]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Success] Token('token użytkownika') - token zalogowanego użytkownika potrzebny do działań na notatkach</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+
+
+        <div class="title-big">Działania na notatkach todo</div>
+
+        <div class="title-small">Dodawanie notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canMakeNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,add,title,tytul,content,tekstnotatki,importance,3,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(add) - określa typ działania na notatkach, w przypadku dodawania przyjmuje wartość 'add'</li>
+                <li>title('tytuł notatki') - określa tytuł notatki</li>
+                <li>importance(0|1|2|3) - waga notatki</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api</li>
+                <li>content('opis') - dodatkowy opis notatki [jeżeli brak proszę jako wartośc umieścić 'null']</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+            <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Usuwanie notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canDeleteNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,delete,id,7,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(delete) - określa typ działania na notatkach, w przypadku usuwania przyjmuje wartość 'delete'</li>
+                <li>id('id notatki') - określa id notatki do usunięcia</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api [token musi być zgodny z tokenem twórcy notatki]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+            <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Edytowanie notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canEditNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,edit,id,7,title,tytul,content,tekstnotatki,importance,3,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(edit) - określa typ działania na notatkach, w przypadku edytowania przyjmuje wartość 'edit'</li>
+                <li>id('id notatki') - określa id notatki do zmiany</li>
+                <li>title('tytuł notatki') - określa tytuł notatki</li>
+                <li>importance(0|1|2|3) - waga notatki</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api [token musi sie zgadzac z tokenem wlasciciela notatki]</li>
+                <li>content('opis') - dodatkowy opis notatki [jeżeli brak proszę jako wartośc umieścić 'null']</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Pobieranie listy aktywnych notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canRequestActiveNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,requestactive,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(requestactive) - określa typ działania na notatkach, w przypadku pobierania aktywnych przyjmuje wartość 'requestactive'</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Success] Notes('lista notatek') - lista notatek</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Pobieranie listy nieaktywnych notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canRequestNonActiveNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,requestnonactive,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(requestnonactive) - określa typ działania na notatkach, w przypadku pobierania nieaktywnych przyjmuje wartość 'requestnonactive'</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Success] Notes('lista notatek') - lista notatek</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Deaktywacja notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canDeactivateNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,deactivate,id,7,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(deactivate) - określa typ działania na notatkach, w przypadku deaktywacji przyjmuje wartość 'deactivate'</li>
+                <li>id('id notatki) - id notatki do deaktywacji</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api [token musi być zgodny z tokenem twórcy notatki]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+
+        <div class="title-small">Aktywacja notatek</div>
+        <div class="content-container">
+            <p>Wymaga uprawnień: canActivateNotes</p>
+            <p >Składnia: <span class="syntax">localhost:8000/api/note/{parametr},{wartość},{parametr2},{wartość2}.../{appkey}</span>
+                <br>Przykład: <span class="syntax">localhost:8000/api/note/type,activate,id,7,token,user223344/testappkey-111222</span></p>
+            <p>Parametry mogą być pisane w dowolnej kolejności, a po każdym parametrze musi zostać umieszczona powiązana z nim wartość.
+                <br>Wymagane parametry:</p>
+            <ul>
+                <li>type(activate) - określa typ działania na notatkach, w przypadku aktywacji przyjmuje wartość 'activate'</li>
+                <li>id('id notatki) - id notatki do deaktywacji</li>
+                <li>token('token użytkownika') - unikalny token użytkownika, można go uzyskać poprzez logowanie do api [token musi być zgodny z tokenem twórcy notatki]</li>
+            </ul>
+            <p>appkey - klucz aplikacji podany przez administratora podczas rejestracji aplikacji</p>
+             <p>Odpowiedź serwera w postaci pliku JSON zawiera:
+                <ul>
+                    <li>Result(Success|Error) - status zapytania</li>
+                    <li>[Result==Error] Error('opis błedu') - opis błędu zapytania</li>
+                </ul>
+            </p>
+        </div>
+    </div>
 </body>
 </html>

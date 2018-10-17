@@ -8,9 +8,10 @@ class TodoNote(models.Model):
     importance = models.IntegerField()
     title = models.CharField(max_length=50)
     content = models.TextField()
+    active = models.BooleanField(default=True)
 
     def __str__(self):
-        return '{} - {}'.format(self.user, self.title)
+        return '{} - {}'.format(self.title, self.user)
 
 
 class TodoUser(models.Model):
@@ -27,9 +28,14 @@ class TodoApps(models.Model):
     appkey = models.CharField(max_length=30)
     canMakeUsers = models.BooleanField(default=False)
     canDeleteUsers = models.BooleanField(default=False)
+    canLoginUsers = models.BooleanField(default=False)
     canMakeNotes = models.BooleanField(default=False)
     canDeleteNotes = models.BooleanField(default=False)
     canEditNotes = models.BooleanField(default=False)
+    canRequestActiveNotes = models.BooleanField(default=False)
+    canRequestNonActiveNotes = models.BooleanField(default=False)
+    canDeactivateNotes = models.BooleanField(default=False)
+    canActivateNotes = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
