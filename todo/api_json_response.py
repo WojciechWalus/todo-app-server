@@ -7,6 +7,16 @@ class Success:
         return JsonResponse({'Result': 'Success'})
 
     @staticmethod
+    def note_added(note_id, note_date, note_active):
+        note_data = {
+            'id': note_id,
+            'date': note_date,
+            'active': note_active
+        }
+        print("halo")
+        return JsonResponse({'Result': 'Success', 'Properties': note_data})
+
+    @staticmethod
     def login(token):
         return JsonResponse({'Result': 'Success', 'Token': token})
 
@@ -19,7 +29,9 @@ class Success:
                 'id': n.id,
                 'content': n.content,
                 'user': n.user,
-                'importance': n.importance
+                'importance': n.importance,
+                'active': n.active,
+                'date': n.date
             }
             note_list.append(note)
         return JsonResponse({'Result': 'Success', 'Notes': note_list})

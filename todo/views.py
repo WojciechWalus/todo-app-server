@@ -58,7 +58,8 @@ def api_request_notes(request, api_request, app_key):
                     new_note.save()
                 except:
                     return response.Error.Data.wrong()
-                return response.Success.success()
+                note = TodoNote.objects.filter(user=request_dict.get('token')).last()
+                return response.Success.note_added(note_id=note.id, note_date=note.date, note_active=note.active)
             except:
                 return response.Error.Data.wrong()
         else:
